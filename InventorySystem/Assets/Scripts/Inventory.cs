@@ -6,13 +6,14 @@ public class Inventory : MonoBehaviour
 {
     public List<Item> characterItems = new List<Item>();
     public ItemDatabase itemDatabase;
+    public UIInventory inventoryUI;
 
     private void Start()
     {
         GiveItem("Diamond Sword");
         GiveItem(1);
         GiveItem(2);
-        RemoveItem(1);
+        //RemoveItem(1);
     }
 
     public void GiveItem(int id)
@@ -30,6 +31,7 @@ public class Inventory : MonoBehaviour
     public void GiveItem(Item item)
     {
         characterItems.Add(item);
+        inventoryUI.AddNewItem(item);
         Debug.Log("Added item: " + item.title);
     }
 
@@ -44,6 +46,7 @@ public class Inventory : MonoBehaviour
         if (item != null)
         {
             characterItems.Remove(item);
+            inventoryUI.RemoveItem(item);
             Debug.Log("Item removed: " + item.title);
         }
     }
